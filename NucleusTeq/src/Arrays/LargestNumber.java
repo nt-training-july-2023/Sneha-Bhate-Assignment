@@ -12,7 +12,6 @@ public class LargestNumber {
 		System.out.println("Enter the size of array : ");
 		
 	
-	
 		int size = sc.nextInt();
 		int arr[] = new int [size];
 		int i;
