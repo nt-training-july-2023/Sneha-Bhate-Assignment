@@ -17,8 +17,6 @@ class Thread8 implements Runnable{
 			//System.out.println(thread.getState());
 			System.out.println("Thread State of Thread8 : " + Thread.currentThread().getState());
 		}
-		 
-
 	
 }
 class Thread9 implements Runnable{
@@ -37,7 +35,6 @@ class Thread9 implements Runnable{
 		System.out.println("Thread State of Thread8 : " + Thread.currentThread().getState());
 	}
 }
-
 
        public class ThreadStates {
 		
@@ -63,12 +60,7 @@ class Thread9 implements Runnable{
 	    	 
 	    	
 	     }
-       
-				
-	    	
-			
-	    		
-	
+    
 }
 
 
