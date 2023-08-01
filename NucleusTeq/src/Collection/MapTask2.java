@@ -55,6 +55,21 @@ public class MapTask2 {
 		System.out.println("Linked Hash map elements after deleting some elements : " + lHashMap);
 
 		TreeMap<Integer, String> treeMap = new TreeMap<Integer, String>();
+		treeMap.put(201, "Sneha Bhate");
+		treeMap.put(202, "Aayushi Mandloi");
+		treeMap.put(203, "Ankit Kumar");
+		treeMap.put(203, "Abhishek Garg");
+		treeMap.put(205, "Aditi Dwivedi");
+
+		System.out.println("Tree Map elements are : " + treeMap); // read
+
+		treeMap.put(203, "Rituja Kekatpure"); // update
+		treeMap.put(204, "Sampada Vyas");
+
+		System.out.println("Updated Tree Map elements are : " + treeMap);
+
+		treeMap.remove(203); // delete
+		treeMap.remove(204);
 
 	}
 
