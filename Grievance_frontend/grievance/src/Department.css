@@ -1,0 +1,32 @@
+.department {
+  color: rgb(33, 33, 43);
+  padding: 25px;
+  margin-left: 35px;
+  padding-top: 1px;
+}
+.departmentContainer {
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  background-color: rgb(41, 45, 90);
+}
+.departmentForm {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 40%;
+  height: 40%;
+  margin-top: 6%;
+  margin-bottom: 12%;
+  border-style: solid;
+  border-radius: 2rem;
+  border-color: rgb(33, 33, 43);
+  background-color: white;
+  padding-top: 5%;
+}
+.row {
+  margin: 15px;
+  display: flex;
+  width: 100%;
+}
