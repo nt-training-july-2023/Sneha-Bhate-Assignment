@@ -1,111 +1,34 @@
-package com.grievance.Grievance.payload;
+package com.grievance.Grievance.InDto;
 
 import javax.persistence.Column;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import com.grievance.Grievance.entity.Department;
 import com.grievance.Grievance.entity.UserType;
 
-public class UserDto {
-
-	private long Id;
+public class UserDetailsInDto {
+	
 	@NotEmpty(message = "Name is required")
 	private String name;
 	
 	@Enumerated(EnumType.STRING)
 	private UserType userType;
-	
 	@NotEmpty(message = "Password is required")
 	@Size(min = 5, message = "Password should be at least 8 characters")
 	private String password;
-	
+
 	@NotEmpty(message = "Email (Username) is required")
 	@Pattern(regexp = "^[A-Za-z0-9._%+-]+@nucleusteq.com+$")
 	@Column(unique = true)
 	private String email;
 	
-	private Boolean isLoggedIn;
-	
-	//Many users can have one department 
-	@ManyToOne
-    private Department department;
-
-	/**
-	 * @return the department
-	 */
-	public Department getDepartment() {
-		return department;
-	}
-
-	/**
-	 * @param department the department to set
-	 */
-	public void setDepartment(Department department) {
-		this.department = department;
-	}
-	
-	/**
-	 * @return the isLoggedIn
-	 */
-	public Boolean getIsLoggedIn() {
-		return isLoggedIn;
-	}
-
-	/**
-	 * @param isLoggedIn the isLoggedIn to set
-	 */
-	public void setIsLoggedIn(Boolean isLoggedIn) {
-		this.isLoggedIn = isLoggedIn;
-	}
-
-	/**
-	 * @param id
-	 * @param name
-	 * @param userType
-	 * @param password
-	 * @param department
-	 * @param email
-	 */
-	public UserDto(long id, String name, UserType  userType, String password, String email,Department department,Boolean isLoggedIn) {
-		super();
-		Id = id;
-		this.name = name;
-		this.userType = userType;
-		this.password = password;
-		this.department = department;
-		this.email = email;
-		this.isLoggedIn = isLoggedIn;
-	
-	}
-
-	/**
-	 * 
-	 */
-	public UserDto() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	
-
-	/**
-	 * @return the id
-	 */
-	public long getId() {
-		return Id;
-	}
-
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(long id) {
-		Id = id;
-	}
+	@NotNull
+	private Department department;
 
 	/**
 	 * @return the name
@@ -131,7 +54,7 @@ public class UserDto {
 	/**
 	 * @param userType the userType to set
 	 */
-	public void setUserType(UserType  userType) {
+	public void setUserType(UserType userType) {
 		this.userType = userType;
 	}
 
@@ -162,5 +85,48 @@ public class UserDto {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+	/**
+	 * @return the department
+	 */
+	public Department getDepartment() {
+		return department;
+	}
+
+	/**
+	 * @param department the department to set
+	 */
+	public void setDepartment(Department department) {
+		this.department = department;
+	}
+
+	/**
+	 * @param name
+	 * @param userType
+	 * @param password
+	 * @param email
+	 * @param department
+	 */
+	public UserDetailsInDto(@NotEmpty(message = "Name is required") String name, UserType userType,
+			@NotEmpty(message = "Password is required") @Size(min = 5, message = "Password should be at least 8 characters") String password,
+			@NotEmpty(message = "Email (Username) is required") @Pattern(regexp = "^[A-Za-z0-9._%+-]+@nucleusteq.com+$") String email,
+			Department department) {
+		super();
+		this.name = name;
+		this.userType = userType;
+		this.password = password;
+		this.email = email;
+		this.department = department;
+	}
+
+	/**
+	 * 
+	 */
+	public UserDetailsInDto() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	
 	
 }

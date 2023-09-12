@@ -1,10 +1,13 @@
 package com.grievance.Grievance.service;
 
-import com.grievance.Grievance.payload.TicketDto;
+import java.util.Optional;
+
+import com.grievance.Grievance.InDto.TicketInDto;
+import com.grievance.Grievance.OutDto.TicketOutDto;
 
 public interface TicketService {
 
-	public TicketDto createTicket(TicketDto ticketDto);
+	public Optional<TicketOutDto> createTicket(TicketInDto ticketInDto);
 	
 	
 }

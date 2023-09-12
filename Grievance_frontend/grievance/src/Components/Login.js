@@ -9,7 +9,7 @@ export const Login = () => {
     password: "",
   };
   const [data, setData] = useState(initialvalues);
-  // const [message, setMessage] = useState("");
+  //const [message, setMessage] = useState("");
   //const display = () => console.log(data);
 
   const handleChange = (e) => {
@@ -18,7 +18,7 @@ export const Login = () => {
   function loginHandler(e) {
     e.preventDefault();
     const allowedDomain = "nucleusteq.com";
-    const emailRegex = new RegExp(`^[A-Za-z0-9._%+-]+@${allowedDomain}$`);
+    const emailRegex = new RegExp(`^[A-Za-z0-5._%+-]+@${allowedDomain}$`);
     if (!emailRegex.test(data.email)) {
       alert(`Please enter a valid email with the domain ${allowedDomain}`);
       return;
@@ -37,45 +37,56 @@ export const Login = () => {
       .post("http://localhost:8080/grievance/login", data)
       .then((response) => {
         console.log(response.data);
-        navigate("/blank");
+        alert("You are Logged In..");
+        navigate("/registration");
       })
       .catch((r) => console.log("Invalid credentials"));
   }
   return (
-    <div className="container">
-      <div className="title">Login</div>
-      <form onSubmit={loginHandler}>
-        <div className="Userdetails">
-          <div className="input-box" required>
-            <span className="details">Username</span>
+    <>
+      <div className="container">
+        <form action className="loginForm" onSubmit={loginHandler}>
+          <h1 className="login">Login</h1>
+          <div class="row">
+            <div class="formLabel">
+              <label for="uname">Username* :</label>
+            </div>
             <input
-              className="e"
+              className="formInput"
               type="email"
-              placeholder="Enter your username : "
               value={data.email}
-              name="email"
               id="email"
+              name="email"
+              placeholder="Enter your email"
               onChange={handleChange}
               required
             />
           </div>
-          <div className="input-box" required>
-            <span className="details">Password</span>
-            <input
-              type="password"
-              placeholder="Enter your password : "
-              value={data.password}
-              name="password"
-              id="password"
-              onChange={handleChange}
-              required
-            />
+          <div className="row">
+            <div className="formLabel">
+              <label for="password">Password* :</label>
+            </div>
+            <div>
+              <input
+                className="formInput"
+                type="password"
+                value={data.password}
+                style={{ width: "100%" }}
+                id="password"
+                name="password"
+                placeholder="Enter your password"
+                onChange={handleChange}
+                required
+              />
+            </div>
           </div>
-        </div>
-        <button type="submit" value="login">
-          Login
-        </button>
-      </form>
-    </div>
+          <div className="row">
+            <button type="submit" value="login">
+              Login
+            </button>
+          </div>
+        </form>
+      </div>
+    </>
   );
 };

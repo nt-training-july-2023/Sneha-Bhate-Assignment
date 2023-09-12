@@ -1,24 +1,22 @@
-package com.grievance.Grievance.payload;
-
+package com.grievance.Grievance.OutDto;
 import java.sql.Date;
-
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.NotEmpty;
-
+import javax.validation.constraints.NotNull;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-
+import com.grievance.Grievance.entity.Comment;
 import com.grievance.Grievance.entity.Department;
 import com.grievance.Grievance.entity.TicketStatus;
 import com.grievance.Grievance.entity.TicketType;
 import com.grievance.Grievance.entity.UserDetails;
 
-public class TicketDto {
+public class TicketOutDto {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -30,11 +28,11 @@ public class TicketDto {
 	@Enumerated(EnumType.STRING)
 	private TicketStatus ticketStatus;
 
-	@NotEmpty(message = "Title is required")
+	@NotNull(message = "Title is required")
 	private String ticketTitle;
+
+	@NotNull(message = "Must add description")
 	private String description;
-	private Department department;
-	private UserDetails userDetails;
 
 	@CreationTimestamp
 	@Column(name = "createdAt", nullable = false, updatable = false)
@@ -43,6 +41,13 @@ public class TicketDto {
 	@UpdateTimestamp
 	@Column(name = "updatedAt")
 	private Date updatedAt;
+
+	private Department department;
+
+	private UserDetails userDetails;
+
+	private List<Comment> comments;
+	
 
 	/**
 	 * @return the ticketId
@@ -171,6 +176,20 @@ public class TicketDto {
 	}
 
 	/**
+	 * @return the comments
+	 */
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+	/**
+	 * @param comments the comments to set
+	 */
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
+	}
+
+	/**
 	 * @param ticketId
 	 * @param ticketType
 	 * @param ticketStatus
@@ -178,9 +197,14 @@ public class TicketDto {
 	 * @param description
 	 * @param createdAt
 	 * @param updatedAt
+	 * @param department
+	 * @param userDetails
+	 * @param comments
 	 */
-	public TicketDto(long ticketId, TicketType ticketType, TicketStatus ticketStatus, String ticketTitle,
-			String description, Date createdAt, Date updatedAt) {
+	public TicketOutDto(long ticketId, TicketType ticketType, TicketStatus ticketStatus,
+			@NotNull(message = "Title is required") String ticketTitle,
+			@NotNull(message = "Must add description") String description, Date createdAt, Date updatedAt,
+			Department department, UserDetails userDetails, List<Comment> comments) {
 		super();
 		this.ticketId = ticketId;
 		this.ticketType = ticketType;
@@ -189,14 +213,20 @@ public class TicketDto {
 		this.description = description;
 		this.createdAt = createdAt;
 		this.updatedAt = updatedAt;
+		this.department = department;
+		this.userDetails = userDetails;
+		this.comments = comments;
 	}
 
 	/**
 	 * 
 	 */
-	public TicketDto() {
+	public TicketOutDto() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
+	
+	
+	
+	
 }

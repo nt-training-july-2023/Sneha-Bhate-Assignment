@@ -1,13 +1,23 @@
 // import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 export const Registration = () => {
+  const navigate = useNavigate;
+
+  const UserType = {
+    ADMIN: "ADMIN",
+    MEMBER: "MEMBER",
+  };
   const forminitialvalues = {
     name: "",
-    userType: "",
+    userType: UserType.ADMIN,
     email: "",
     password: "",
-    department: "",
+    department: {
+      deptName: "HR",
+      deptName: "Engineer",
+    },
   };
 
   const [formdata, setformData] = useState(forminitialvalues);
@@ -19,12 +29,13 @@ export const Registration = () => {
     e.preventDefault();
     console.log(formdata);
     axios
-      .post("http://localhost:8080/grievance/save", formdata)
+      .post("http://localhost:8080/grievance/saveUser", formdata)
       .then((response) => {
         console.log(response.formdata);
-        // navigate("/Registration");
+        alert("Member Registerd");
+        navigate("/admindashboard");
       })
-      .catch((r) => console.log("Please provide valid information"));
+      .catch((r) => console.log("Registered"));
   }
   return (
     <>
@@ -33,7 +44,7 @@ export const Registration = () => {
           <h1 className="login">Registration</h1>
           <div className="row">
             <div className="formLabel">
-              <label for="name">Name* :</label>
+              <label htmlFor="name">Name* :</label>
             </div>
             <input
               className="formInput"
@@ -52,7 +63,7 @@ export const Registration = () => {
             <input
               className="formInput"
               type="email"
-              id="email"
+              id="eml"
               name="email"
               placeholder="Enter your email"
               onChange={formChange}
@@ -61,7 +72,7 @@ export const Registration = () => {
           </div>
           <div className="row">
             <div className="formLabel">
-              <label for="password">Password* :</label>
+              <label htmlFor="password">Password* :</label>
             </div>
             <input
               className="formInput"
@@ -77,23 +88,23 @@ export const Registration = () => {
             <div className="formLabel">
               <label for="userType">User-Type* :</label>
             </div>
-            <select className="role" name="role" onChange={formChange}>
-              <option value="Admin">Admin</option>
-              <option value="Member">Member</option>
+            <select className="role" name="userType" onChange={formChange}>
+              <option value={UserType.ADMIN}>ADMIN</option>
+              <option value={UserType.MEMBER}>MEMBER</option>
             </select>
           </div>
 
           <div className="row">
             <div className="formLabel">
-              <label for="dname">Department* :</label>
+              <label htmlFor="dname">Department* :</label>
             </div>
             <select
               className="department"
               name="department"
               onChange={formChange}
             >
-              <option value="HR">HR</option>
-              <option value="Engineer">Engineer</option>
+              <option value="department.deptName">HR</option>
+              <option value="department.deptName">Engineer</option>
             </select>
           </div>
           <div className="row">

@@ -1,19 +1,30 @@
-import "./App.css";
 import "./Login.css";
-import Home from "./Components/Home";
-import Navbar from "./Components/Navbar";
+import "./Department.css";
 import { Login } from "./Components/Login";
+import { Registration } from "./Components/Registration";
 import { Routes, Route } from "react-router-dom";
-import Blank from "./Components/Blank.js";
+import "./Registration.css";
+import { Ticket } from "./Components/Ticket";
+import "./Ticket.css";
+import "./Nav.css";
+import { Department } from "./Components/Department";
+
+import Navbar from "./Components/Navbar";
+import { AdminDashboard } from "./Components/AdminDashboard";
+import "./AdminDashboard.css";
 
 function App() {
   return (
     <>
-      <Navbar />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/Login" element={<Login />} />
-        <Route path="/Blank" element={<Blank />} />
+        <Route path="/" element={<Login />} />
+        <Route path="/registration" element={<Registration />} />
+        <Route path="/ticket" element={<Ticket></Ticket>}></Route>
+        <Route path="/department" element={<Department />}></Route>
+        <Route
+          path="/admindashboard"
+          element={((<AdminDashboard />), (<Navbar></Navbar>))}
+        ></Route>
         {/* <h1>Grievance Management System</h1> */}
       </Routes>
     </>

@@ -13,12 +13,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.GeneratorType;
 import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
@@ -55,7 +52,6 @@ public class Ticket {
 	private UserDetails userDetails;
 	
     @OneToMany(mappedBy = "ticket")
-//    @JoinColumn(name = "commentId")
     private List<Comment> comments;
     
 	/**
